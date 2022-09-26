@@ -6,10 +6,10 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        local canSleep = true
+        local Sleep = 700
         
         if onMaissa then
-            canSleep = false
+            Sleep = 3
             SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
             BeginTextCommandDisplayHelp('STRING')
             AddTextComponentSubstringPlayerName("Paina ~INPUT_PICKUP~ herätäksesi")
@@ -19,10 +19,6 @@ Citizen.CreateThread(function()
             end
         end
 
-        if canSleep then
-            Citizen.Wait(700)
-        end
-
-        Citizen.Wait(3)
+        Citizen.Wait(Sleep)
     end
 end)
