@@ -1,2 +1,2 @@
 # t_faint
-Tosi kookona /faint nouset E napista    :O
+Tosi kookona /faint tai U ja  nouset E napista    :O
