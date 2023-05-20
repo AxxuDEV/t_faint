@@ -1,24 +1,24 @@
-local onMaissa = false
+local faint = false
 
-RegisterCommand("faint", function()
-    onMaissa = true
+RegisterCommand('faint', function(source, args, rawCommand)
+    faint = true
 end)
 
-Citizen.CreateThread(function()
+
+CreateThread(function()
     while true do
-        local Sleep = 700
-        
-        if onMaissa then
-            Sleep = 3
-            SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
+        local w = 1500
+        if faint then 
+            w = 3
+            SetPedToRagdoll(cache.ped, 1000, 1000, 0, 0, 0, 0)
             BeginTextCommandDisplayHelp('STRING')
             AddTextComponentSubstringPlayerName("Paina ~INPUT_PICKUP~ herätäksesi")
             EndTextCommandDisplayHelp(0, false, true, -1)
-            if IsControlJustReleased(0, 51) then
-                onMaissa = false
+            if IsControlJustPressed(0, 51) then 
+                faint = false
             end
         end
-
-        Citizen.Wait(Sleep)
+        Wait(w)
     end
 end)
+RegisterKeyMapping('faint', 'kaadu', 'keyboard', 'U')
