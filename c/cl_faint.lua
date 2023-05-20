@@ -7,7 +7,7 @@ end)
 
 CreateThread(function()
     while true do
-        local w = 1500
+        local w = 700
         if faint then 
             w = 3
             SetPedToRagdoll(cache.ped, 1000, 1000, 0, 0, 0, 0)
