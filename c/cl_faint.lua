@@ -4,21 +4,25 @@ RegisterCommand('faint', function(source, args, rawCommand)
     faint = true
 end)
 
-
 CreateThread(function()
+    local textUi = false
     while true do
         local w = 700
-        if faint then 
+        if faint then
             w = 3
             SetPedToRagdoll(cache.ped, 1000, 1000, 0, 0, 0, 0)
-            BeginTextCommandDisplayHelp('STRING')
-            AddTextComponentSubstringPlayerName("Paina ~INPUT_PICKUP~ herätäksesi")
-            EndTextCommandDisplayHelp(0, false, true, -1)
-            if IsControlJustPressed(0, 51) then 
+            if not textUi then 
+                lib.showTextUI('[E] - Nouse maasta')
+                textUi = true
+            end
+            if IsControlJustPressed(0, 38) then 
                 faint = false
+                textUi = false
+                lib.hideTextUI()
             end
         end
         Wait(w)
     end
 end)
-RegisterKeyMapping('faint', 'kaadu', 'keyboard', 'U')
+
+RegisterKeyMapping('faint', 'Maahan', 'keyboard', 'U')
